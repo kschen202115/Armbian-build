@@ -58,7 +58,7 @@ jobs:
           cp  cjktty-6.7.patch linux/cjktty-6.7.patch
           
           
-          cp cjk_config linux/arch/arm64/configs/defconfig
+          cp cjk_config linux/arch/arm64/configs/msm8953_defconfig
           cd linux
           wget https://raw.githubusercontent.com/zhmars/cjktty-patches/refs/heads/master/cjktty-add-cjk32x32-font-data.patch
           export CROSS_COMPILE=aarch64-linux-gnu-
@@ -76,12 +76,12 @@ jobs:
 
           export CROSS_COMPILE=aarch64-linux-gnu-
           export ARCH=arm64
-          make defconfig
+          make msm8953_defconfig
           make deb-pkg -j$(nproc)
           cd ..
           cp *.deb /workdir
           cp linux/arch/arm64/boot/Image.gz /workdir
-          tar -czf /workdir/msm8996_dtb.tar.gz linux/arch/arm64/boot/dts/qcom/*mido*.dtb
+          tar -czf /workdir/msm8953_dtb.tar.gz linux/arch/arm64/boot/dts/qcom/*mido*.dtb
           find ./ -type f \( ! -name "*.ko" -a ! -name "modules.*" \) -exec rm -f {} \;
           cd linux/
           tar -czf /workdir/modules.tar.gz ./*

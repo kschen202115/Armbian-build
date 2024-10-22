@@ -67,8 +67,7 @@ jobs:
           make deb-pkg -j$(nproc)
           cd ..
           cp *.deb /workdir
-          cp linux/arch/arm/boot/* /workdir/
-          tar -czf /workdir/msm8064_dtb.tar.gz linux/arch/arm/boot/dts/qcom/*8064*.dtb
+          tar -czf /workdir/msm8064_dtb.tar.gz linux/arch/arm/
           find ./ -type f \( ! -name "*.ko" -a ! -name "modules.*" \) -exec rm -f {} \;
           cd linux/
           tar -czf /workdir/modules.tar.gz ./*

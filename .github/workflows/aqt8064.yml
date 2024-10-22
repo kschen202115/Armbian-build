@@ -56,7 +56,7 @@ jobs:
         id: patch
         run: |
           
-          cp 8998c linux/arch/arm/configs/msm8996_defconfig
+          cp config linux/arch/arm/configs/msm8996_defconfig
       - name: Compile
         id: compile
         run: |

@@ -51,7 +51,7 @@ jobs:
       - name: Download source code
         id: down
         run: |
-          git clone --depth 1 https://github.com/apq8064-mainline/linux.git linux
+          git clone --depth 1 https://github.com/kschen202115/apq8064.git linux
       - name: Patch kernel
         id: patch
         run: |

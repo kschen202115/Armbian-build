@@ -56,14 +56,14 @@ jobs:
         id: patch
         run: |
           
-          cp config linux/arch/arm/configs/msm8996_defconfig
+          cp config linux/arch/arm/configs/msm8996_v7_defconfig
       - name: Compile
         id: compile
         run: |
           cd linux/
           export CROSS_COMPILE=arm-linux-gnueabihf-
           export ARCH=arm
-          make msm8996_defconfig
+          make msm8996_v7_defconfig
           make deb-pkg -j$(nproc)
           cd ..
           cp *.deb /workdir

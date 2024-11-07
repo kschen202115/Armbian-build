@@ -51,11 +51,13 @@ jobs:
       - name: Download source code
         id: down
         run: |
-          git clone --depth 1 https://github.com/MoKee/android_kernel_xiaomi_aries.git linux
+          git clone --depth 1 https://github.com/kschen202115/apq8064.git linux
       - name: Patch kernel
         id: patch
         run: |
-          
+          sudo rm -rf linux/arch/arm/mach-qcom
+          unzip mach-qcom.zip -d linux/arch/mach-qcom
+          ls linux/arch/mach-qcom
           cp aconfig linux/arch/arm/configs/msm8996_v7_defconfig
       - name: Compile
         id: compile
@@ -63,7 +65,7 @@ jobs:
           cd linux/
           export CROSS_COMPILE=arm-linux-gnueabihf-
           export ARCH=arm
-          make aries-perf-usr_defconfig
+          make msm8996_v7_defconfig
           make deb-pkg -j$(nproc)
           cd ..
           cp *.deb /workdir

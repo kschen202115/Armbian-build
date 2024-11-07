@@ -57,7 +57,7 @@ jobs:
         run: |
           sudo rm -rf linux/arch/arm/mach-qcom
           unzip mach-qcom.zip -d linux/arch/mach-qcom
-          chmod +rw linux/arch/arm/mach-qcom/Kconfig
+          cp Kconfig linux/arch/arm/mach-qcom/Kconfig
           ls linux/arch/mach-qcom
           cp aconfig linux/arch/arm/configs/msm8996_v7_defconfig
       - name: Compile

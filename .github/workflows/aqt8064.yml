@@ -63,6 +63,7 @@ jobs:
         id: compile
         run: |
           cd linux/
+          git add .
           export CROSS_COMPILE=arm-linux-gnueabihf-
           export ARCH=arm
           make msm8996_v7_defconfig

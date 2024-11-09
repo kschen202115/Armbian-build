@@ -51,23 +51,25 @@ jobs:
       - name: Download source code
         id: down
         run: |
-          git clone --depth 1 https://github.com/kschen202115/apq8064.git linux
-      - name: Patch kernel
-        id: patch
-        run: |
-          sudo rm -rf linux/arch/arm/mach-qcom
-          unzip mach-qcom.zip -d linux/arch/arm/mach-qcom
-          ls linux/arch/arm/mach-qcom
-          cp aconfig linux/arch/arm/configs/msm8996_v7_defconfig
+          git clone --depth 1 https://github.com/LineageOS/android_prebuilts_gcc_linux-x86_arm_arm-linux-androideabi-4.9.git gcc-4.9
+          git clone --depth 1 https://github.com/MoKee/android_kernel_xiaomi_aries.git -b mkq-mr1 linux
+      # - name: Patch kernel
+      #   id: patch
+      #   run: |
+      #     sudo rm -rf linux/arch/arm/mach-qcom
+      #     unzip mach-qcom.zip -d linux/arch/arm/mach-qcom
+      #     ls linux/arch/arm/mach-qcom
+      #     cp aconfig linux/arch/arm/configs/msm8996_v7_defconfig
       - name: Compile
         id: compile
         run: |
           cd linux/
-          git add .
-          export CROSS_COMPILE=arm-linux-gnueabihf-
+          export PATH=$GITHUB_WORKSPACE/gcc-4.9/bin:$PATH
+          export KBUILD_BUILD_HOST=Github-Action
+          export CROSS_COMPILE=arm-linux-androideabi-
           export ARCH=arm
-          make msm8996_v7_defconfig
-          make deb-pkg -j$(nproc) -Werror=incompatible-pointer-types -Wmissing-prototypes
+          make aries-perf-user_defconfig
+          make deb-pkg -j$(nproc) 
           cd ..
           cp *.deb /workdir
           tar -czf /workdir/msm8064_dtb.tar.gz linux/arch/arm/

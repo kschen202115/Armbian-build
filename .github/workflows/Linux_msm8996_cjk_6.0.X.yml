@@ -58,14 +58,16 @@ jobs:
           cp  cjktty-6.9.patch linux/cjktty-6.9.patch
           
           
+          
           cp cjk_config linux/arch/arm64/configs/msm8996_defconfig
           cd linux
+          wget https://raw.githubusercontent.com/zhmars/cjktty-patches/refs/heads/master/v6.x/cjktty-6.0.patch
           wget https://raw.githubusercontent.com/zhmars/cjktty-patches/refs/heads/master/cjktty-add-cjk32x32-font-data.patch
           export CROSS_COMPILE=aarch64-linux-gnu-
           export ARCH=arm64
           make clean
           make mrproper
-          git apply cjktty-6.9.patch
+          git apply cjktty-6.0.patch
           git apply cjktty-add-cjk32x32-font-data.patch
           git add .
           cd ..

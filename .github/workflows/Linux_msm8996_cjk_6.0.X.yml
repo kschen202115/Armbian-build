@@ -51,7 +51,7 @@ jobs:
       - name: Download source code
         id: down
         run: |
-          git clone --depth 1 https://gitlab.com/kschen202115/msm8996-6.9.git linux
+          git clone --depth 1 https://gitlab.com/kschen202115/linux.git -b msm8996-stable-6.0.y linux
       - name: Patch kernel
         id: patch
         run: |

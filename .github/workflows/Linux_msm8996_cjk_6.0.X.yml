@@ -51,7 +51,7 @@ jobs:
       - name: Download source code
         id: down
         run: |
-          git clone --depth 1 https://gitlab.com/kschen202115/linux.git -b 6.0.13 linux
+          git clone --depth 1 https://gitlab.com/kschen202115/linux.git -b 6.0.2 linux
       - name: Patch kernel
         id: patch
         run: |
